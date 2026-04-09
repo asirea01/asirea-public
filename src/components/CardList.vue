@@ -39,7 +39,7 @@ const showModal = (item) => {
   selectedItem.value = item
 }
 
-const { on, isConnected } = useSignalR(`${baseApiURL}` + "appHub");
+const { on, isConnected } = useSignalR(`${baseApiURL}` + "/appHub");
 
 async function fetchData() {
   refreshing.value = true
