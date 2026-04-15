@@ -16,14 +16,18 @@
           "Colaborar no es solo unir esfuerzos: es multiplicar resultados"
         </span>
       </div>
-      <WaveSvg class="hero-wave" color="#ffffff" />
+      <WaveSvg class="hero-wave" color="#383634" />
     </section>
 
     <!-- Colaboraciones cards -->
     <section class="traj-cards-section">
+
       <div data-aos="fade-up" data-aos-duration="800">
+        <h1 class="text-center colab-title">Colaboradores</h1>
+
         <CardList data-url="/json/colaborations.json" :signal-events="null"
-          empty-text="No hay colaboraciones disponibles por el momento." empty-icon="bi-people" categoria-slug="colaboradores"/>
+          empty-text="No hay colaboraciones disponibles por el momento." empty-icon="bi-people"
+          categoria-slug="colaboradores" />
       </div>
     </section>
 
@@ -40,8 +44,8 @@
       </div>
       <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
         <CardList data-url="proyecto" :signal-events="proyectosSignalEvents" :show-button="true"
-          button-text="Conocer más" :target-blank="true"
-          empty-text="No hay proyectos para mostrar por el momento." empty-icon="bi-folder" categoria-slug="proyectos"/>
+          button-text="Conocer más" :target-blank="true" empty-text="No hay proyectos para mostrar por el momento."
+          empty-icon="bi-folder" categoria-slug="proyectos" />
       </div>
     </section>
 
@@ -81,9 +85,9 @@
         </h3>
       </div>
       <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-        <CardList data-url="src/json/thesis.json" :signal-events="null" :show-button="true"
-          button-text="Ver documento" :target-blank="true"
-          empty-text="No hay informes o tesis disponibles por el momento." empty-icon="bi-journal-text" />
+        <CardList data-url="src/json/thesis.json" :signal-events="null" :show-button="true" button-text="Ver documento"
+          :target-blank="true" empty-text="No hay informes o tesis disponibles por el momento."
+          empty-icon="bi-journal-text" />
       </div>
     </section>
   </div>
@@ -116,6 +120,7 @@ const fichasSignalEvents = {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 0 !important;
   background: linear-gradient(135deg, var(--primary) 0%, #026b4e 50%, var(--primary-light) 100%);
 
 }
@@ -182,8 +187,22 @@ const fichasSignalEvents = {
 }
 
 /* ── Cards section (colaboraciones) ── */
+
+section {
+  margin-top: 0 !important;
+}
+
 .traj-cards-section {
-  padding: 40px 0 20px;
+  background-color: var(--card-section-color);
+  padding: 0 0 20px;
+}
+
+.colab-title {
+  background-color: var(--card-section-color);
+  margin: 0;
+  padding: 12px;
+  color: #c6c7c7;
+  border: none;
 }
 
 /* ── Content blocks ── */

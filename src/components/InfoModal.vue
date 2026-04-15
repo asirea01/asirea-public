@@ -1,31 +1,50 @@
 <template>
-  <Transition name="modal">
-    <div class="modal-backdrop-custom" @click.self="close" v-if="visible">
-      <div class="modal-box">
-        <div class="modal-header ccardModalHead">
-          <h4 class="modal-title">{{ item.titulo }}</h4>
-        </div>
-        <div class="modal-body ccardModalBody">
-          <div class="modal-image-wrapper">
-            <img :src="item.imagenPortadaUrl" class="modal-image" />
+  <Teleport to="body">
+
+    <Transition name="modal">
+      <div class="modal-backdrop-custom" @click.self="close" v-if="visible">
+        <div class="modal-box">
+          <div class="modal-header ccardModalHead">
+            <h4 class="modal-title">{{ item.titulo }}</h4>
           </div>
-          <div class="modal-description" v-html="item.descripcion"></div>
-        </div>
-        <div class="modal-footer ccardModalFoot">
-          <button class="btn btn-primary active ccarda" @click="close">Cerrar</button>
+          <div class="modal-body ccardModalBody">
+            <div class="modal-image-wrapper">
+              <img :src="item.imagenPortadaUrl" class="modal-image" />
+            </div>
+            <div class="modal-right-col">
+              <div v-if="fechaFormateada" class="modal-date-chip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14z" />
+                </svg>
+                {{ fechaFormateada }}
+              </div>
+              <div class="modal-description" v-html="item.descripcion"></div>
+            </div>
+          </div>
+          <div class="modal-footer ccardModalFoot">
+            <button class="btn btn-primary ccarda" @click="close">Cerrar</button>
+          </div>
         </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
-defineProps({
-  item: Object
+const props = defineProps({ item: Object })
+
+const fechaFormateada = computed(() => {
+  if (!props.item?.fechaCreacion) return null
+
+  return new Date(props.item.fechaCreacion).toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  })
 })
-
 const emit = defineEmits(['close'])
 const visible = ref(false)
 
@@ -88,7 +107,7 @@ function close() {
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 1700;
 }
 
 /* ── Modal Body Layout ── */
@@ -121,15 +140,54 @@ function close() {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
-/* ── Description Styles ── */
+/* Columna derecha: chip + descripción */
+.modal-right-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+/* Chip de fecha */
+.modal-date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background-color: rgba(var(--primary-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  width: fit-content;
+  letter-spacing: 0.01em;
+}
+
+.modal-date-chip svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* Descripción (sin cambios funcionales) */
 .modal-description {
   flex: 1;
   font-size: 1rem;
   line-height: 1.7;
   color: #444;
   text-align: justify;
-  padding: 0.5rem 0;
 }
+
+/* ── Description Styles ── */
+/* .modal-description {
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  text-align: justify;
+  padding: 0.5rem 0;
+} */
 
 .modal-description :deep(p) {
   margin-bottom: 1rem;
@@ -258,6 +316,7 @@ function close() {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -269,9 +328,15 @@ function close() {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+
   to {
     opacity: 0;
     transform: translateY(20px) scale(0.97);
   }
+}
+
+.ccarda {
+  background: transparent;
+  border: 2px solid var(--border-light);
 }
 </style>

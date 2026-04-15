@@ -30,7 +30,6 @@
                 <div class="carousel-item">
                     <img src="/images/Carrusel2c.webp" class="d-block w-100" alt="Slide 2">
                     <div class="carousel-caption d-none d-md-block">
-
                         <h2>Impulsamos sistemas agroforestales</h2>
                         <br>
                         <a href="/services" class="cbotoncar">Mas información</a>
@@ -93,3 +92,60 @@
         </div>
     </section>
 </template>
+
+<style scoped>
+
+.row {
+    margin-top: 0 !important;
+}
+/* ============================================================
+   CAROUSEL CONTENEDOR
+   ============================================================ */
+.carousel {
+    width: 100%;
+    padding: 0;
+}
+
+/* ============================================================
+   CAROUSEL ITEM E IMÁGENES
+   ============================================================ */
+.carousel-item {
+    background-color: #777;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Ajuste de posición para la imagen del slide 3 en móvil */
+.c-image {
+    object-position: center center;
+}
+
+/* ============================================================
+   BOTÓN CTA DEL CAROUSEL
+   ============================================================ */
+.cbotoncar {
+    color: #000;
+    background-color: #ffb209;
+    font-size: 1.75rem;
+    border-radius: 10px;
+    padding: 10px 25px;
+    font-weight: 800;
+}
+
+/* ============================================================
+   MEDIA QUERY — MÓVIL
+   ============================================================ */
+@media screen and (max-width: 775px) {
+    .c-image {
+        object-position: 70% 75%;
+    }
+    .carousel-item {
+        height: 210px;
+    }
+}
+</style>

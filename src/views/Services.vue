@@ -131,6 +131,7 @@ import WatsAppBtn from '@/components/WatsAppBtn.vue'
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 0 !important;
 }
 
 .hero-bg {

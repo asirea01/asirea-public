@@ -3,7 +3,7 @@
     <div data-aos="fade-in" data-aos-duration="800">
       <Carousel />
     </div>
-    
+
     <section class="row">
       <div class="container-fluid">
         <div class="row">
@@ -132,7 +132,7 @@ import CardList from '@/components/CardList.vue'
   left: -8px;
   right: -8px;
   bottom: -8px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, #dddddd 0%, #d9d9d9 100%);
   border-radius: 18px;
   z-index: -1;
   opacity: 0.1;

@@ -193,6 +193,9 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+section {
+    margin-top: 0 !important;
+}
 /* ══════════════════════════════════════════════
    HERO SECTION
    ══════════════════════════════════════════════ */

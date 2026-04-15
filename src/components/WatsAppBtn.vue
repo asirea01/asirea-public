@@ -1,5 +1,5 @@
-<template>
-    <div class="whatsapp-container" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500">
+<template >
+    <div class="whatsapp-container display" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500">
         <div class="whatsapp-label">Contactar al WhatsApp</div>
         <div class="cbuttonwhatsapp">
             <a href="https://wa.me/50683428764" target="_blank">
@@ -10,12 +10,17 @@
 </template>
 
 <style scoped>
+@media (min-width: 769px){
+    .display {
+        display: flex !important;
+    }
+}
 .whatsapp-container {
     position: fixed;
     bottom: 60px;
     right: 10px;
     z-index: 6;
-    display: flex;
+    display: none;
     align-items: center;
     gap: 15px;
 }

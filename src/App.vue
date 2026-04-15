@@ -16,7 +16,7 @@ const toggleMenu = () => {
 <template>
   <HamburgerMenu :show="isToggled"/>
   <Header @toggleMenu="toggleMenu"></Header>
-  <main>
+  <main style="max-width: 100%; overflow: hidden;">
     <RouterView></RouterView>
   </main>
   <Footer></Footer>
